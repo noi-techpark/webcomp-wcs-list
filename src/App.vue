@@ -4,8 +4,13 @@
   <div class="btn btn-primary">Button</div>
 </template>
 
-<script setup>
-import * as bootstrap from 'bootstrap'
+<script setup lang="ts">
+import { onMounted } from 'vue';
+
+
+onMounted(async () => {
+
+});
 </script>
 
 <style lang="scss">
