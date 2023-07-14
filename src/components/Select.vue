@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="row gx-4 gy-2">
-      <div class="col-12 col-lg-6 position-relative">
+      <div class="col-12 col-lg-4 position-relative">
         <div
           id="dropdown-title"
-          class="select-element w-100 position-relative border-0 form-control bg-light dropdown-toggle text-start"
+          class="select-element w-100 position-relative border-0 form-control bg-light dropdown-toggle dropdown-title text-start"
           @click="toggleDropdown()"
         >
           {{ dropdownTitle }}
@@ -32,11 +32,10 @@
           </ul>
         </div>
       </div>
-      <div class="col-12 col-lg-6">
+      <div class="col-12 col-lg-4">
         <input
           type="text"
           class="select-element w-100 border-0 form-control bg-light text-start"
-          id="searchbar"
           placeholder="Search elements"
           v-model="searchTerm"
         >
@@ -84,6 +83,5 @@ const dropdownTitle = computed<string>(() => {
 })
 
 const searchTerm = ref<string>("");
-
 watch(searchTerm, (newValue) => emit("searchTermChange", newValue));
 </script>

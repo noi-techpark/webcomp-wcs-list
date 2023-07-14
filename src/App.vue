@@ -4,18 +4,20 @@
   <head ref="head">
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.testingmachine.eu/open-sans/style.css">
   </head>
   <body>
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-4 px-0">
       <div class="pb-4 row">
         <Select
-          class="col col-xl-4"
+          class="col col-xl-6"
           :tags="tags"
           @tags-change="(changedTags) => selectedTags = changedTags"
           @search-term-change="(changedTerm) => searchTerm = changedTerm"
         />
       </div>
-      <div class="mt-4">
+      <div class="pt-4">
+        <h3 class="pb-2">{{ filteredData?.length }} Components</h3>
         <div class="row g-4">
           <div
             v-if="filteredData?.length ?? 0 > 0"
@@ -25,7 +27,7 @@
           >
             <WebcompCard :webcomp-data="item" />
           </div>
-          <h2 v-else>Your search came up empty</h2>
+          <h3 v-else>Your search came up empty</h3>
         </div>
       </div>
     </div>
