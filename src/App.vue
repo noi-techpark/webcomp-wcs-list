@@ -1,12 +1,5 @@
 <template>
-  <!DOCTYPE html>
-  <html data-bs-theme=light lang="en">
-  <head ref="head">
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.testingmachine.eu/open-sans/style.css">
-  </head>
-  <body>
+  <body data-bs-theme=light :style="`font-family: '${fontName}'`">
     <div class="container-fluid py-4 px-0">
       <div class="pb-4 row">
         <Select
@@ -32,14 +25,35 @@
       </div>
     </div>
   </body>
-  </html>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { WebcompData } from './types';
 import WebcompCard from "./components/WebcompCard.vue";
 import Select from './components/Select.vue';
+
+const {
+  fontUrl,
+  fontName,
+} = withDefaults(defineProps<{
+  fontUrl?: string;
+  fontName?: string;
+}>(), {
+  fontUrl: "https://fonts.testingmachine.eu/open-sans/style.css",
+  fontName: "Open Sans",
+})
+
+fetch(fontUrl)
+.then((response) => response.text())
+.then((cssText) => {
+  const fontFaceSheet = new CSSStyleSheet();
+  fontFaceSheet.replaceSync(cssText);
+  document.adoptedStyleSheets = [
+    ...document.adoptedStyleSheets,
+    fontFaceSheet,
+  ];
+});
 
 const data = ref<WebcompData[]>();
 
