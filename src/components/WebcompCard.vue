@@ -25,6 +25,7 @@
               </strong>
               {{ webcompData.authors.length > 1 ? "et al." : "" }}
             </span>
+            <br />
             <span>
               Category: 
               <strong>
@@ -39,6 +40,7 @@
                 {{ webcompData.currentVersion.versionTag }}
               </strong>
             </span>
+            <br />
             <span>
               License: 
               <strong>
