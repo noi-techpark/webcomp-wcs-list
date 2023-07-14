@@ -16,7 +16,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         />
       </div>
       <div class="pt-4">
-        <h3 class="pb-2">{{ filteredData?.length }} Components</h3>
+        <h4 class="pb-4"><b>{{ filteredData?.length }} Components</b></h4>
         <div class="row g-4">
           <div
             v-if="filteredData?.length ?? 0 > 0"
@@ -26,7 +26,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
           >
             <WebcompCard :webcomp-data="item" :api-base="apiBase" />
           </div>
-          <h3 v-else>Your search came up empty</h3>
+          <h4 v-else><b>Your search came up empty</b></h4>
         </div>
       </div>
     </div>
