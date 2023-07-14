@@ -1,6 +1,6 @@
 <template>
   <body data-bs-theme=light :style="`font-family: '${fontName}'`">
-    <div class="container-fluid py-4 px-0">
+    <div class="container-fluid py-4" :class="`${noPadding ? 'p-0' : ''}`">
       <div class="pb-4 row">
         <Select
           class="col col-xl-6"
@@ -36,12 +36,15 @@ import Select from './components/Select.vue';
 const {
   fontUrl,
   fontName,
+  noPadding,
 } = withDefaults(defineProps<{
   fontUrl?: string;
   fontName?: string;
+  noPadding?: boolean;
 }>(), {
   fontUrl: "https://fonts.testingmachine.eu/open-sans/style.css",
   fontName: "Open Sans",
+  noPadding: false,
 })
 
 fetch(fontUrl)
