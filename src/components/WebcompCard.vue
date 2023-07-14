@@ -1,7 +1,7 @@
 <template>
   <a
     class="text-reset text-decoration-none"
-    :href="`https://webcomponents.opendatahub.testingmachine.eu/webcomponent/${webcompData.shortName}`"
+    :href="`${frontendBase}/webcomponent/${webcompData.shortName}`"
     target="_blank"
   >
     <div class="d-flex flex-column h-100 rounded-2 overflow-hidden bg-white shadow">
@@ -37,14 +37,14 @@
             <span>
               Version: 
               <strong>
-                {{ webcompData.currentVersion.versionTag }}
+                {{ webcompData.currentVersion?.versionTag }}
               </strong>
             </span>
             <br />
             <span>
               License: 
               <strong>
-                {{ webcompData.license.licenseId }}
+                {{ webcompData.license?.licenseId }}
               </strong>
             </span>
           </div>
@@ -62,6 +62,11 @@ const { webcompData, apiBase } = defineProps<{
   webcompData: WebcompData;
   apiBase: string
 }>();
+
+const frontendBaseEnv = import.meta.env.VITE_FRONTEND_BASE as string;
+const frontendBase = frontendBaseEnv.endsWith("/")
+  ? frontendBaseEnv.slice(0, -1)
+  : frontendBaseEnv;
 
 const imageSrc = webcompData.image === "wcs-logo.png"
   ? `${apiBase}/webcomponent/${webcompData.uuid}/logo/thumb`
