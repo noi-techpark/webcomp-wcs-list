@@ -56,11 +56,12 @@
 import { WebcompData } from "../types";
 import placeholder from "../assets/img/component_placeholder.png";
 
-const { webcompData } = defineProps<{
+const { webcompData, apiBase } = defineProps<{
   webcompData: WebcompData;
+  apiBase: string
 }>();
 
 const imageSrc = webcompData.image === "wcs-logo.png"
-  ? `https://api.webcomponents.opendatahub.testingmachine.eu/webcomponent/${webcompData.uuid}/logo/thumb`
+  ? `${apiBase}/webcomponent/${webcompData.uuid}/logo/thumb`
   : placeholder;
 </script>

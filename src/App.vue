@@ -18,7 +18,7 @@
             :key="item.uuid"
             class="col-12 col-md-6 col-lg-4 col-xl-3"
           >
-            <WebcompCard :webcomp-data="item" />
+            <WebcompCard :webcomp-data="item" :api-base="apiBase" />
           </div>
           <h3 v-else>Your search came up empty</h3>
         </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { WebcompData } from './types';
 import WebcompCard from "./components/WebcompCard.vue";
 import Select from './components/Select.vue';
@@ -55,9 +55,14 @@ fetch(fontUrl)
   ];
 });
 
+const apiBaseEnv = import.meta.env.VITE_API_BASE as string;
+const apiBase = apiBaseEnv.endsWith("/")
+  ? apiBaseEnv.slice(0, -1)
+  : apiBaseEnv;
+
 const data = ref<WebcompData[]>();
 
-fetch("https://api.webcomponents.opendatahub.testingmachine.eu/webcomponent?pageSize=1000&pageNumber=0&tags=&searchTerm=")
+fetch(`${apiBase}/webcomponent?pageSize=1000&pageNumber=0`)
 .then((res) => res.json())
 .then((json) => data.value = json.content)
 .catch((err) => console.error(err));
