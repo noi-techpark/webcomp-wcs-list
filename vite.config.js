@@ -11,9 +11,7 @@ export default defineConfig({
     assetsInlineLimit: 512000,
     rollupOptions: {
       output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
+        entryFileNames: "wcs-list-widget.min.js"
       }
     }
   }

@@ -1,0 +1,63 @@
+{
+  "title": "Web Components List",
+  "description": "A web component to display a list of all webcomponents available in the Web Component Store. It also provides filtering by search term or tags.",
+  "descriptionAbstract": "List of all webcomponents available in the Web Component Store",
+  "shortName": "wcs-list",
+  "license": "AGPL-3.0-or-later",
+  "repositoryUrl": "https://github.com/noi-techpark/webcomp-wcs-list.git",
+  "copyrightHolders": [
+    {
+      "name": "NOI",
+      "email": "digital@noi.bz.it",
+      "organization": "NOI AG/SpA Südtirol - Alto Adige",
+      "organizationUrl": "https://noi.bz.it"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Henri Egger",
+      "email": "h.egger@noi.bz.it",
+      "organization": "NOI AG",
+      "organizationUrl": "https://noi.bz.it"
+    }
+  ],
+  "image": "wcs-logo.png",
+  "searchTags": [
+    "list"
+  ],
+  "dist": {
+    "basePath": "dist",
+    "files": [
+      "wcs-list-widget.min.js"
+    ],
+    "scripts": [
+      {
+        "file": "wcs-list-widget.min.js",
+        "parameter": ""
+      }
+    ]
+  },
+  "configuration": {
+    "tagName": "wcs-list-widget",
+    "options": [
+      {
+        "key": "font-url",
+        "type": "text",
+        "label": "URL to a valid font css file",
+        "required": false,
+        "options": {
+          "default": "https://fonts.testingmachine.eu/open-sans/style.css"
+        }
+      },
+      {
+        "key": "font-name",
+        "type": "text",
+        "label": "Name of the font loaded from the font URL",
+        "required": false,
+        "options": {
+          "default": "Open Sans"
+        }
+      }
+    ]
+  }
+}
