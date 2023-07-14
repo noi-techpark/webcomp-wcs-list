@@ -9,5 +9,12 @@ export default defineConfig({
   },
   build: {
     assetsInlineLimit: 512000,
+    rollupOptions: {
+      output: {
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
+      }
+    }
   }
 })
