@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 <template>
   <body data-bs-theme=light :style="`font-family: '${fontName}'`">
     <div class="container-fluid py-4" :class="`${noPadding ? 'p-0' : ''}`">

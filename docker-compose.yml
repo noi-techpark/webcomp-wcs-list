@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+version: "3.4"
+services:
+  app:
+    image: node:16.20
+    volumes:
+      - ./:/code
+    working_dir: /code
+    command: sh -c "npm install; npm run dev"
+    ports:
+      - "3000:3000"
+    tty: true
