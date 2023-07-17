@@ -42,11 +42,11 @@ jobs:
           build-command: npm run build
           node-version: ${{env.NODE_VERSION}}
 
-      # - name: Push Webcomponent
-      #   uses: noi-techpark/github-actions/webcomp-push@v2
-      #   with:
-      #     keycloak-secret: ${{secrets.WCSTORE_CLI_KEYCLOAK_SECRET_TEST}}
-      #     version-tag: ${{github.sha}}
+      - name: Push Webcomponent
+        uses: noi-techpark/github-actions/webcomp-push@v2
+        with:
+          keycloak-secret: ${{secrets.WCSTORE_CLI_KEYCLOAK_SECRET_TEST}}
+          version-tag: ${{github.sha}}
 
   deploy-prod:
     runs-on: ubuntu-20.04
@@ -63,9 +63,9 @@ jobs:
           build-command: npm run build
           node-version: ${{env.NODE_VERSION}}
 
-      # - name: Push Webcomponent
-      #   uses: noi-techpark/github-actions/webcomp-push@v2
-      #   with:
-      #     keycloak-secret: ${{secrets.WCSTORE_CLI_KEYCLOAK_SECRET_PROD}}
-      #     version-tag: ${{github.ref_name}}
-      #     production: "true"
+      - name: Push Webcomponent
+        uses: noi-techpark/github-actions/webcomp-push@v2
+        with:
+          keycloak-secret: ${{secrets.WCSTORE_CLI_KEYCLOAK_SECRET_PROD}}
+          version-tag: ${{github.ref_name}}
+          production: "true"
