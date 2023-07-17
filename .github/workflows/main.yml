@@ -36,6 +36,12 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
+      - name: Create .env file
+        uses: noi-techpark/github-actions/env-file@v2
+        env:
+          X_VITE_API_BASE: https://api.webcomponents.opendatahub.testingmachine.eu
+          X_VITE_FRONTEND_BASE: https://webcomponents.opendatahub.testingmachine.eu
+
       - name: NPM build
         uses: noi-techpark/github-actions/npm-build@v2
         with:
@@ -56,6 +62,12 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
+
+      - name: Create .env file
+        uses: noi-techpark/github-actions/env-file@v2
+        env:
+          X_VITE_API_BASE: https://api.webcomponents.opendatahub.com
+          X_VITE_FRONTEND_BASE: https://webcomponents.opendatahub.com
 
       - name: NPM build
         uses: noi-techpark/github-actions/npm-build@v2
