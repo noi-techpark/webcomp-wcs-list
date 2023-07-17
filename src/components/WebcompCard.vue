@@ -58,9 +58,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
           </span>
         </div>
       </div>
-      <div class="align-self-start d-lg-none d-flex justify-content-center align-items-center gap-2 btn btn-primary bg-black border-0">
+      <a
+        :href="`${frontendBase}/webcomponent/${webcompData.shortName}`"
+        target="_blank"
+        class="align-self-start d-lg-none d-flex justify-content-center align-items-center gap-2 btn btn-primary bg-black border-0"
+      >
         <span>Open in Store</span><IconExternal sm />
-      </div>
+      </a>
     </div>
   </div>
 </template>
