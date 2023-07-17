@@ -5,6 +5,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
+  <head>
+    <meta name="description" content="List of all webcomponents available in the Open Data Hub Web Component Store">
+  </head>
   <body data-bs-theme=light :style="`font-family: '${fontName}'`">
     <div class="container-fluid py-4" :class="`${noPadding ? 'p-0' : ''}`">
       <div class="pb-4 row">
