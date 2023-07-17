@@ -10,6 +10,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
       <img
         :src="imageSrc"
         class="w-100 object-fit-cover"
+        alt="web component image"
       />
       <a
         class="webcomp-card-link d-none d-lg-flex justify-content-center align-items-center gap-2 position-absolute h-100 text-decoration-none cursor-pointer"
