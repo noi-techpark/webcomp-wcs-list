@@ -17,9 +17,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
           @tags-change="(changedTags) => selectedTags = changedTags"
           @search-term-change="(changedTerm) => searchTerm = changedTerm"
         />
+        <h4 class="col text-end"><b>{{ filteredData?.length }} Components</b></h4>
       </div>
       <div class="pt-4">
-        <h4 class="pb-4"><b>{{ filteredData?.length }} Components</b></h4>
         <div class="row g-4">
           <div
             v-if="filteredData?.length ?? 0 > 0"
