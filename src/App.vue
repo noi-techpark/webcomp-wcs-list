@@ -10,14 +10,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   </head>
   <body data-bs-theme=light :style="`font-family: '${fontName}'`">
     <div class="container-fluid py-4" :class="`${noPadding ? 'p-0' : ''}`">
-      <div class="pb-4 row">
+      <div class="pb-lg-4 row gy-4 align-items-center">
         <Select
-          class="col col-xl-6"
+          class="col-12 col-xl-6"
           :tags="tags"
           @tags-change="(changedTags) => selectedTags = changedTags"
           @search-term-change="(changedTerm) => searchTerm = changedTerm"
         />
-        <h4 class="col text-end"><b>{{ filteredData?.length }} Components</b></h4>
+        <h4 class="col-12 col-xl-6 text-lg-end"><b>{{ filteredData?.length }} Components</b></h4>
       </div>
       <div class="pt-4">
         <div class="row g-4">
