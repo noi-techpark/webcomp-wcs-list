@@ -71,7 +71,7 @@ const apiBase = apiBaseEnv.endsWith("/")
 
 const data = ref<WebcompData[]>();
 
-fetch(`${apiBase}/webcomponent?pageSize=1000&pageNumber=0`)
+fetch(`${apiBase}/webcomponent?pageSize=1000&pageNumber=0&&origin=webcomp-wcs-list`)
 .then((res) => res.json())
 .then((json) => data.value = json.content)
 .catch((err) => console.error(err));
