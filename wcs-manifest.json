@@ -57,15 +57,6 @@
         "options": {
           "default": "Open Sans"
         }
-      },
-      {
-        "key": "no-padding",
-        "type": "null",
-        "label": "Disable padding around the web component",
-        "required": false,
-        "options": {
-          "default": false
-        }
       }
     ]
   }

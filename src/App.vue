@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <meta name="description" content="List of all webcomponents available in the Open Data Hub Web Component Store">
   </head>
   <body data-bs-theme=light :style="`font-family: '${fontName}'`">
-    <div class="container-fluid py-4" :class="`${noPadding ? 'p-0' : ''}`">
+    <div class="container-fluid py-4">
       <div class="pb-lg-4 row gy-4 align-items-center">
         <Select
           class="col-12 col-xl-6"
@@ -46,15 +46,12 @@ import { apiBase, fetchMetadata } from './ts/api';
 const {
   fontUrl,
   fontName,
-  noPadding,
 } = withDefaults(defineProps<{
   fontUrl?: string;
   fontName?: string;
-  noPadding?: boolean;
 }>(), {
   fontUrl: "https://fonts.testingmachine.eu/open-sans/style.css",
   fontName: "Open Sans",
-  noPadding: false,
 })
 
 fetch(fontUrl)
