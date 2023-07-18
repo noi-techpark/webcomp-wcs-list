@@ -6,12 +6,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <template>
   <div>
-    <div class="row gx-4 gy-2">
-      <div class="col-12 col-lg-4 position-relative">
+    <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-4">
+      <div
+        class="col-12 col-lg-4 position-relative"
+      >
         <div
           id="dropdown-title"
-          class="select-element w-100 position-relative border-0 form-control bg-light dropdown-toggle dropdown-title text-start"
-          @click="toggleDropdown()"
+          class="select-element w-100 position-relative border-0 form-control bg-light dropdown-toggle text-start"
+          @click="toggleDropdown"
         >
           {{ dropdownTitle }}
         </div>
