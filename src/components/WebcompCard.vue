@@ -26,36 +26,32 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         <p>{{ webcompData.descriptionAbstract }}</p>
       </div>
       <div class="d-none d-lg-flex row">
-        <div class="col-6">
-          <span>
+        <div class="col-12">
+          <div v-if="webcompData.authors[0]">
             Author: 
             <strong>
               {{ webcompData.authors[0].name }}
             </strong>
             {{ webcompData.authors.length > 1 ? "et al." : "" }}
-          </span>
-          <br />
-          <span>
+          </div>
+          <div v-if="webcompData.searchTags[0]">
             Category: 
             <strong>
               {{ webcompData.searchTags.join(", ") }}
             </strong>
-          </span>
-        </div>
-        <div class="col-6">
-          <span>
+          </div>
+          <div>
             Version: 
             <strong>
               {{ webcompData.currentVersion?.versionTag }}
             </strong>
-          </span>
-          <br />
-          <span>
+          </div>
+          <div>
             License: 
             <strong>
               {{ webcompData.license?.licenseId }}
             </strong>
-          </span>
+          </div>
         </div>
       </div>
       <a
@@ -70,19 +66,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 </template>
 
 <script setup lang="ts">
-import { WebcompData } from "../types";
+import { WebcompData } from "../ts/types";
 import placeholder from "../assets/img/component_placeholder.png";
 import IconExternal from "./IconExternal.vue";
+import { frontendBase } from "../ts/api";
 
 const { webcompData, apiBase } = defineProps<{
   webcompData: WebcompData;
   apiBase: string
 }>();
-
-const frontendBaseEnv = import.meta.env.VITE_FRONTEND_BASE as string;
-const frontendBase = frontendBaseEnv.endsWith("/")
-  ? frontendBaseEnv.slice(0, -1)
-  : frontendBaseEnv;
 
 const imageSrc = webcompData.image === "wcs-logo.png"
   ? `${apiBase}/webcomponent/${webcompData.uuid}/logo/thumb`

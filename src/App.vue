@@ -38,9 +38,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { WebcompData } from './types';
+import { WebcompData } from './ts/types';
 import WebcompCard from "./components/WebcompCard.vue";
 import Select from './components/Select.vue';
+import { apiBase, fetchMetadata } from './ts/api';
 
 const {
   fontUrl,
@@ -67,17 +68,15 @@ fetch(fontUrl)
   ];
 });
 
-const apiBaseEnv = import.meta.env.VITE_API_BASE as string;
-const apiBase = apiBaseEnv.endsWith("/")
-  ? apiBaseEnv.slice(0, -1)
-  : apiBaseEnv;
-
 const data = ref<WebcompData[]>();
 
-fetch(`${apiBase}/webcomponent?pageSize=1000&pageNumber=0&&origin=webcomp-wcs-list`)
-.then((res) => res.json())
-.then((json) => data.value = json.content)
-.catch((err) => console.error(err));
+const params = [
+  "pageSize=1000",
+  "pageNumber=0",
+  "origin=webcomp-wcs-list"
+];
+
+fetchMetadata(apiBase, params).then((res) => data.value = res)
 
 const selectedTags = ref<Set<string>>(new Set);
 const searchTerm = ref<string>("");
