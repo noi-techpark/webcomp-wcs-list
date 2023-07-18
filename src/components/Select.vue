@@ -40,13 +40,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
           </ul>
         </div>
       </div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12 col-lg-4 position-relative">
         <input
           type="text"
           class="select-element w-100 border-0 form-control bg-light text-start"
           placeholder="Search elements"
           v-model="searchTerm"
         >
+        <div @click="searchTerm = ''" class="close-icon"></div>
       </div>
     </div>
   </div>
