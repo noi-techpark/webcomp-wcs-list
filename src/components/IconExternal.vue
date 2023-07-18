@@ -25,7 +25,7 @@ import { computed } from 'vue';
 const {
   sm
 } = withDefaults(defineProps<{
-  sm: boolean
+  sm?: boolean
 }>(), {
   sm: false
 })
