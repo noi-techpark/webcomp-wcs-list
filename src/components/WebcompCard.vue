@@ -67,7 +67,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <script setup lang="ts">
 import { WebcompData } from "../ts/types";
-import placeholder from "../assets/img/component_placeholder.png";
+import placeholder from "../assets/img/placeholder.png";
 import IconExternal from "./IconExternal.vue";
 import { frontendBase } from "../ts/api";
 
