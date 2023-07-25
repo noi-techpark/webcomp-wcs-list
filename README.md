@@ -13,8 +13,8 @@ This is a web component which displacs a list of all webcomponents available in 
 - [Web Component List](#web-component-list)
   - [Usage](#usage)
     - [Attributes](#attributes)
-      - [xxxx](#xxxx)
-      - [yyy](#yyy)
+      - [font-url](#font-url)
+      - [font-name](#font-name)
   - [Getting started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Source code](#source-code)
@@ -39,7 +39,7 @@ This is a web component which displacs a list of all webcomponents available in 
 Include the webcomp script file `dist/wcs-list-widget.min.js` in your HTML and define the web component like this:
 
 ```html
-<wcs-list-widget font-url="https://fonts.testingmachine.eu/open-sans/style.css" font-name="Open Sans" no-paddig></wcs-list-widget>
+<wcs-list-widget font-url="https://fonts.testingmachine.eu/open-sans/style.css" font-name="Open Sans"></wcs-list-widget>
 ```
 
 ### Attributes
@@ -166,10 +166,6 @@ Guide](https://github.com/noi-techpark/odh-docs/wiki/Contributor-Guidelines:-Get
 ### Documentation
 
 More documentation can be found at [https://docs.opendatahub.com](https://docs.opendatahub.com).
-
-### Boilerplate
-
-The project uses this boilerplate: [https://github.com/noi-techpark/webcomp-boilerplate](https://github.com/noi-techpark/webcomp-boilerplate).
 
 ### License
 
