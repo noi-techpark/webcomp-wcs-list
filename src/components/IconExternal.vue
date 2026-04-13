@@ -22,13 +22,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <script setup lang="ts">
 import { computed } from 'vue';
 
-const {
-  sm
-} = withDefaults(defineProps<{
-  sm?: boolean
-}>(), {
-  sm: false
-})
+const { sm = false } = defineProps<{
+  sm?: boolean;
+}>();
 
 const size = computed(() => sm ? 15 : 20);
 </script>

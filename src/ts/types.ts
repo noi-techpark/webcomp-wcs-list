@@ -12,4 +12,10 @@ export interface WebcompData {
   authors: { name: string }[];
   searchTags: string[];
   currentVersion: { versionTag: string };
+  // Optional display fields — may be present in future API responses;
+  // fall back to 0 / "unknown" when absent.
+  updatedAt?: string;
+  rating?: number;
+  reviewCount?: number;
+  userCount?: number;
 }

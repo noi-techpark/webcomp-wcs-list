@@ -4,69 +4,321 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-$secondary: #50742F;
-$light: #f5f5f5;
+@use "bootstrap/scss/bootstrap";
 
-// Import all of Bootstrap's CSS
-@import "bootstrap/scss/bootstrap";
+// ─── Header ────────────────────────────────────────────────────────────────
 
-#dropdown-title {
-  cursor: pointer;
-
-  &::after {
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    right: 0.75rem;
-  }
+.wcs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.close-icon {
-  cursor: pointer;
-  display: inline-block;
-  position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
-  right: 0.75rem;
-
-  &::after {
-    content: "\2716";
-  }
+.wcs-header-text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+  line-height: 1.15;
 }
 
-#dropdown {
-  max-height: 300px;
+.wcs-header-text p {
+  font-size: 0.95rem;
+  margin: 0;
+  max-width: 760px;
+  line-height: 1.5;
 }
 
-.select-element {
-  &:hover,
-  &:focus {
-    background-color: $gray-200 !important;
-    box-shadow: none;
-  }
-}
-
-.webcomp-card {
-  .webcomp-card-link {
-    transition: all 0.2s ease-in-out;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-
-    h4, svg {
-      transition: color 0.25s ease-in-out;
-      color: rgba(255, 255, 255, 0.75);
-    }
-  }
+.wcs-cta-btn {
+  flex-shrink: 0;
+  border: 1px solid transparent; /* color driven by headerButtonBorderColor prop */
+  border-radius: 5px;
+  padding: 0.58rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: filter 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    .webcomp-card-link {
-      opacity: 1;
+    filter: brightness(0.92);
+    transform: translateY(-1px);
+  }
+}
 
-      &:hover {
-        h4, svg {
-          color: rgba(255, 255, 255, 1);
-        }
-      }
+// ─── Category filter chip bar ───────────────────────────────────────────────
+
+.wcs-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  margin-bottom: 1.4rem;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Chip colors are driven by CSS custom properties set inline from props.
+// Fallback values match the manifest defaults.
+.wcs-chip {
+  flex-shrink: 0;
+  border: 1px solid var(--chip-border, #dddddd);
+  border-radius: 5px;
+  background: var(--chip-bg, #f0f0f0);
+  color: var(--chip-text, #111111);
+  padding: 0.42rem 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  &:hover:not(.active) {
+    filter: brightness(0.94);
+    transform: translateY(-1px);
+  }
+
+  &.active {
+    background: var(--chip-active-bg, #111111);
+    color: var(--chip-active-text, #ffffff);
+    border-color: var(--chip-active-border, var(--chip-active-bg, #111111));
+    font-weight: 600;
+  }
+}
+
+// ─── Slider ────────────────────────────────────────────────────────────────
+
+.wcs-slider-outer {
+  position: relative;
+  padding: 0 3rem;
+}
+
+.wcs-slider-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Arrow colors driven by CSS custom properties / inline styles set from props.
+.wcs-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid; /* color driven by inline style */
+  border-radius: 6px;
+  width: 30px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 0.85rem;
+  transition: filter 0.2s ease, transform 0.2s ease;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.92);
+    transform: translateY(-50%) scale(1.03);
+  }
+
+  &.is-disabled {
+    opacity: 0.35;
+    cursor: pointer;
+  }
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+}
+
+.wcs-slider-track {
+  display: flex;
+  gap: 1rem;
+}
+
+.wcs-slider-item {
+  flex: 0 0 calc((100% - ((var(--wcs-cards-per-page, 4) - 1) * 1rem)) / var(--wcs-cards-per-page, 4));
+  min-width: 240px;
+  scroll-snap-align: start;
+}
+
+// ─── Card ──────────────────────────────────────────────────────────────────
+
+.wcs-card {
+  background: #ffffff; /* overridden at runtime by cardBgColor prop */
+  border: 1px solid #eeeeee; /* overridden at runtime by cardBorderColor prop */
+  border-radius: 8px;
+  box-shadow: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.wcs-card--no-shadow {
+    box-shadow: none;
+    &:hover {
+      transform: none;
+      box-shadow: none;
     }
   }
+}
+
+.wcs-card-thumb {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  flex-shrink: 0;
+  /* background driven by cardThumbBgColor inline style */
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.wcs-card-badge {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: capitalize;
+  line-height: 1.4;
+  /* bg and color driven by props */
+}
+
+.wcs-card-bookmark {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 5px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* color driven by cardBookmarkColor prop */
+}
+
+.wcs-card-body {
+  padding: 1rem 1rem 1.05rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.wcs-card-updated {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.wcs-card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0.1rem 0 0.2rem;
+  line-height: 1.3;
+}
+
+.wcs-card-rating {
+  font-size: 0.75rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.wcs-card-users {
+  font-size: 0.75rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.wcs-card-desc {
+  font-size: 0.8rem;
+  margin: 0.35rem 0 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.45;
+}
+
+.wcs-card-cta {
+  margin-top: 0.75rem;
+}
+
+.wcs-open-btn {
+  border: 1px solid;
+  border-radius: 0.3rem;
+  padding: 0.8rem 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: filter 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    filter: brightness(0.93);
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 900px) {
+  .wcs-slider-outer {
+    padding: 0 2.4rem;
+  }
+
+  .wcs-slider-item {
+    min-width: min(300px, 84vw);
+  }
+}
+
+// ─── Loading / error / empty states ────────────────────────────────────────
+
+.wcs-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.wcs-state-error {
+  color: #c0392b;
+}
+
+.wcs-state-empty {
+  /* color driven by emptyStateTextColor prop */
+}
+
+.wcs-state-loading {
+  color: #888;
 }
