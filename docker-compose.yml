@@ -5,7 +5,7 @@
 version: "3.4"
 services:
   app:
-    image: node:16.20
+    image: node:25
     volumes:
       - ./:/code
     working_dir: /code

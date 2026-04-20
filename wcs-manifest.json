@@ -41,6 +41,474 @@
     "tagName": "wcs-list-widget",
     "options": [
       {
+        "key": "bgColor",
+        "type": "text",
+        "label": "Widget background color (hex)",
+        "required": false,
+        "options": { "default": "#ffffff" }
+      },
+      {
+        "key": "cardsPerPage",
+        "type": "number",
+        "label": "Cards visible per slider page",
+        "required": false,
+        "options": { "default": 4, "min": 1, "max": 12, "step": 1 }
+      },
+      {
+        "key": "cardBgColor",
+        "type": "text",
+        "label": "Card background color (hex)",
+        "required": false,
+        "options": { "default": "#ffffff" }
+      },
+      {
+        "key": "sectionTitle",
+        "type": "text",
+        "label": "Header section title",
+        "required": false,
+        "options": { "default": "Explore by category" }
+      },
+      {
+        "key": "sectionTitleColor",
+        "type": "text",
+        "label": "Section title text color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "sectionTitleVisible",
+        "type": "bool",
+        "label": "Show/hide the section title",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "sectionSubtitle",
+        "type": "text",
+        "label": "Header subtitle paragraph",
+        "required": false,
+        "options": { "default": "Access a growing number of web components." }
+      },
+      {
+        "key": "sectionSubtitleColor",
+        "type": "text",
+        "label": "Subtitle text color (hex)",
+        "required": false,
+        "options": { "default": "#666666" }
+      },
+      {
+        "key": "sectionSubtitleVisible",
+        "type": "bool",
+        "label": "Show/hide the section subtitle",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "headerButtonVisible",
+        "type": "bool",
+        "label": "Show/hide the header CTA button",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "headerButtonText",
+        "type": "text",
+        "label": "Header CTA button label",
+        "required": false,
+        "options": { "default": "View all in Store" }
+      },
+      {
+        "key": "headerButtonTextColor",
+        "type": "text",
+        "label": "Header CTA button text color (hex)",
+        "required": false,
+        "options": { "default": "#ffffff" }
+      },
+      {
+        "key": "headerButtonBgColor",
+        "type": "text",
+        "label": "Header CTA button background color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "headerButtonBorderColor",
+        "type": "text",
+        "label": "Header CTA button border color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "filterType",
+        "type": "select",
+        "label": "Filter UI variant",
+        "required": false,
+        "options": { "values": ["chips", "dropdown", "search"], "default": "chips" }
+      },
+      {
+        "key": "filterVisible",
+        "type": "bool",
+        "label": "Show/hide the filter bar",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "filterCategories",
+        "type": "multiselect",
+        "label": "Category filter to display",
+        "required": false,
+        "options": {
+          "values": [
+            "all",
+            "accommodation",
+            "accommodations",
+            "booking",
+            "dashboard",
+            "directions",
+            "events",
+            "flights",
+            "forecast",
+            "heatmap",
+            "hotjar",
+            "housing",
+            "list",
+            "location",
+            "lock.all",
+            "map",
+            "mobility",
+            "pages",
+            "real time",
+            "showcase",
+            "ski",
+            "South Tyrol",
+            "südtirol radelt",
+            "suedtirol radelt",
+            "sustainability apps",
+            "tab",
+            "tourism",
+            "trip",
+            "ummadum",
+            "weather"
+          ],
+          "default": "all"
+        }
+      },
+      {
+        "key": "categoryApiUrl",
+        "type": "text",
+        "label": "Category API endpoint (used by widget runtime; optional)",
+        "required": false,
+        "options": { "default": "" }
+      },
+      {
+        "key": "chipBgColor",
+        "type": "text",
+        "label": "Filter chip default background color (hex)",
+        "required": false,
+        "options": { "default": "#f0f0f0" }
+      },
+      {
+        "key": "chipTextColor",
+        "type": "text",
+        "label": "Filter chip default text color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "chipActiveBgColor",
+        "type": "text",
+        "label": "Filter chip active/selected background color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "chipActiveTextColor",
+        "type": "text",
+        "label": "Filter chip active/selected text color (hex)",
+        "required": false,
+        "options": { "default": "#ffffff" }
+      },
+      {
+        "key": "chipActiveBorderColor",
+        "type": "text",
+        "label": "Filter chip active/selected border color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "chipBorderColor",
+        "type": "text",
+        "label": "Filter chip border color (hex)",
+        "required": false,
+        "options": { "default": "#dddddd" }
+      },
+      {
+        "key": "chipAllLabel",
+        "type": "text",
+        "label": "Label for the 'All' reset chip",
+        "required": false,
+        "options": { "default": "All" }
+      },
+      {
+        "key": "sliderArrowsVisible",
+        "type": "bool",
+        "label": "Show/hide the slider prev/next arrow buttons",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "sliderArrowBgColor",
+        "type": "text",
+        "label": "Slider arrow button background color (hex)",
+        "required": false,
+        "options": { "default": "#ffffff" }
+      },
+      {
+        "key": "sliderArrowIconColor",
+        "type": "text",
+        "label": "Slider arrow icon/glyph color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "sliderArrowBorderColor",
+        "type": "text",
+        "label": "Slider arrow button border color (hex)",
+        "required": false,
+        "options": { "default": "#dddddd" }
+      },
+      {
+        "key": "cardBorderColor",
+        "type": "text",
+        "label": "Card border color (hex)",
+        "required": false,
+        "options": { "default": "#eeeeee" }
+      },
+      {
+        "key": "cardShadowVisible",
+        "type": "bool",
+        "label": "Show/hide the card drop shadow",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardThumbBgColor",
+        "type": "text",
+        "label": "Card thumbnail placeholder background color (hex)",
+        "required": false,
+        "options": { "default": "#e8eef4" }
+      },
+      {
+        "key": "cardThumbVisible",
+        "type": "bool",
+        "label": "Show/hide the card thumbnail area",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardBadgeBgColor",
+        "type": "text",
+        "label": "Card category badge background color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "cardBadgeTextColor",
+        "type": "text",
+        "label": "Card category badge text color (hex)",
+        "required": false,
+        "options": { "default": "#ffffff" }
+      },
+      {
+        "key": "cardBadgeVisible",
+        "type": "bool",
+        "label": "Show/hide the card category badge",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardBookmarkVisible",
+        "type": "bool",
+        "label": "Show/hide the bookmark icon on cards",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardBookmarkColor",
+        "type": "text",
+        "label": "Bookmark icon color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "cardTitleColor",
+        "type": "text",
+        "label": "Card title text color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "cardTitleVisible",
+        "type": "bool",
+        "label": "Show/hide the card title",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardUpdatedVisible",
+        "type": "bool",
+        "label": "Show/hide the 'Updated' row on cards",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardUpdatedColor",
+        "type": "text",
+        "label": "Card updated row text color (hex)",
+        "required": false,
+        "options": { "default": "#888888" }
+      },
+      {
+        "key": "cardUpdatedLabel",
+        "type": "text",
+        "label": "Static prefix label for the updated row",
+        "required": false,
+        "options": { "default": "Updated" }
+      },
+      {
+        "key": "cardRatingVisible",
+        "type": "bool",
+        "label": "Show/hide the rating row on cards",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardRatingColor",
+        "type": "text",
+        "label": "Card rating row text color (hex)",
+        "required": false,
+        "options": { "default": "#888888" }
+      },
+      {
+        "key": "cardRatingStarColor",
+        "type": "text",
+        "label": "Rating star glyph color (hex)",
+        "required": false,
+        "options": { "default": "#f5a623" }
+      },
+      {
+        "key": "cardUsersVisible",
+        "type": "bool",
+        "label": "Show/hide the user count row on cards",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardUsersColor",
+        "type": "text",
+        "label": "Card user count row text color (hex)",
+        "required": false,
+        "options": { "default": "#888888" }
+      },
+      {
+        "key": "cardUsersLabel",
+        "type": "text",
+        "label": "Static suffix label for the user count row",
+        "required": false,
+        "options": { "default": "users" }
+      },
+      {
+        "key": "cardDescriptionColor",
+        "type": "text",
+        "label": "Card description text color (hex)",
+        "required": false,
+        "options": { "default": "#666666" }
+      },
+      {
+        "key": "cardDescriptionVisible",
+        "type": "bool",
+        "label": "Show/hide the card description",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardMetaColor",
+        "type": "text",
+        "label": "Card meta text color — updated/rating/users (hex). Superseded by individual cardUpdated/Rating/UsersColor props.",
+        "required": false,
+        "options": { "default": "#888888" }
+      },
+      {
+        "key": "cardButtonVisible",
+        "type": "bool",
+        "label": "Show/hide the Open in Store button on cards",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardButtonText",
+        "type": "text",
+        "label": "Card Open in Store button label",
+        "required": false,
+        "options": { "default": "Open in Store" }
+      },
+      {
+        "key": "cardButtonTextColor",
+        "type": "text",
+        "label": "Card button text color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "cardButtonBorderColor",
+        "type": "text",
+        "label": "Card button border color (hex)",
+        "required": false,
+        "options": { "default": "#cccccc" }
+      },
+      {
+        "key": "cardButtonBgColor",
+        "type": "text",
+        "label": "Card button background color (hex or 'transparent')",
+        "required": false,
+        "options": { "default": "transparent" }
+      },
+      {
+        "key": "cardButtonIconVisible",
+        "type": "bool",
+        "label": "Show/hide the external link icon on the card button",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "cardButtonIconColor",
+        "type": "text",
+        "label": "Card button icon color (hex)",
+        "required": false,
+        "options": { "default": "#111111" }
+      },
+      {
+        "key": "emptyStateVisible",
+        "type": "bool",
+        "label": "Show/hide the empty state message when no cards match filters",
+        "required": false,
+        "options": { "default": true }
+      },
+      {
+        "key": "emptyStateText",
+        "type": "text",
+        "label": "Empty state message text",
+        "required": false,
+        "options": { "default": "No components found." }
+      },
+      {
+        "key": "emptyStateTextColor",
+        "type": "text",
+        "label": "Empty state message text color (hex)",
+        "required": false,
+        "options": { "default": "#888888" }
+      },
+      {
         "key": "font-url",
         "type": "text",
         "label": "URL to a valid font css file",
