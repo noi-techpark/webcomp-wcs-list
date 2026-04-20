@@ -5,10 +5,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
-  <head>
-    <meta name="description" :content="props.sectionSubtitle">
-  </head>
-  <body
+  <div
+    v-bind="attrs"
     data-bs-theme="light"
     :style="{ fontFamily: `'${props.fontName}'`, backgroundColor: props.bgColor }"
   >
@@ -121,11 +119,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
       </div>
 
     </div>
-  </body>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, useAttrs, watch } from 'vue';
 import { WebcompData } from './ts/types';
 import WebcompCard from './components/WebcompCard.vue';
 import CategoryFilter from './components/CategoryFilter.vue';
@@ -217,6 +215,8 @@ const props = defineProps({
   emptyStateText:         { type: String,  default: 'No components found.' },
   emptyStateTextColor:    { type: String,  default: '#888888' },
 });
+
+const attrs = useAttrs();
 
 // All card-level props bundled for v-bind pass-through to WebcompCard
 const cardPassthrough = computed(() => ({
@@ -392,6 +392,18 @@ function updateSliderControls(): void {
   canScrollNext.value = vp.scrollLeft < maxLeft - 4;
 }
 
+function scheduleSliderControlsUpdate(): void {
+  nextTick(() => {
+    updateSliderControls();
+    requestAnimationFrame(() => {
+      updateSliderControls();
+    });
+    setTimeout(() => {
+      updateSliderControls();
+    }, 120);
+  });
+}
+
 function onSliderScroll(): void {
   updateSliderControls();
 }
@@ -418,14 +430,22 @@ async function resetSliderPosition(): Promise<void> {
 
 watch(filteredData, () => {
   resetSliderPosition();
+  scheduleSliderControlsUpdate();
 });
 
 watch(cardsPerPageNumber, () => {
   resetSliderPosition();
+  scheduleSliderControlsUpdate();
+});
+
+watch(loading, (isLoading) => {
+  if (!isLoading) {
+    scheduleSliderControlsUpdate();
+  }
 });
 
 onMounted(() => {
-  updateSliderControls();
+  scheduleSliderControlsUpdate();
   window.addEventListener('resize', updateSliderControls);
 });
 

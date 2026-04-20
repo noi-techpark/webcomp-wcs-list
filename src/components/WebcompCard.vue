@@ -34,7 +34,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         v-show="cardBookmarkVisible !== 'false'"
         class="wcs-card-bookmark"
         :style="{ color: cardBookmarkColor }"
-        aria-hidden="true"
+        :data-card-id="cardId"
+        role="button"
+        tabindex="0"
+        @click="onBookmarkClick"
       >
         <!-- Bookmark outline icon -->
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -112,7 +115,6 @@ import { ref, computed } from 'vue';
 import { WebcompData } from '../ts/types';
 import { apiBase, frontendBase } from '../ts/api';
 import IconExternal from './IconExternal.vue';
-import placeholderImg from '../assets/img/placeholder.png';
 
 const {
   webcompData,
@@ -182,9 +184,18 @@ const {
 
 // Always use the API thumb URL as primary; fall back to placeholder on error
 const imgSrc = ref(`${apiBase}/webcomponent/${webcompData.uuid}/logo/thumb`);
+const placeholderImg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23e8eef4'/%3E%3Cg fill='none' stroke='%2394a3b8' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='164' y='84' width='312' height='192' rx='18'/%3E%3Cpath d='M196 242l74-86 60 58 44-40 70 68'/%3E%3Ccircle cx='248' cy='142' r='20'/%3E%3C/g%3E%3C/svg%3E";
 function onImgError() {
   imgSrc.value = placeholderImg;
 }
+
+function onBookmarkClick() {
+  console.log('Bookmark clicked', {
+    cardId,
+  });
+}
+
+const cardId = webcompData.uuid;
 
 const firstTag = computed(() => webcompData.searchTags[0] ?? '');
 
